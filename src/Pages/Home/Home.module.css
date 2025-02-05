@@ -1,0 +1,13 @@
+.title {
+  font-size: 50px;
+  color: white;
+}
+
+.link {
+  color: white;
+  border: 1px solid white;
+  text-decoration: none;
+  background-color: #e66465;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
