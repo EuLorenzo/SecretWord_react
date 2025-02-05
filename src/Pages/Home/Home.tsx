@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   return (
-    <div>
+    <div className={styles.mainContainer}>
       <h1 className={styles.title}>Secret Word</h1>
       <p>Clique no botão abaixo para começar a jogar</p>
       <Link

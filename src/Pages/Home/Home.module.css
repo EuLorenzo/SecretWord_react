@@ -1,13 +1,31 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    color: white;
+  }
+}
+
 .title {
   font-size: 50px;
   color: white;
+  margin: 0;
 }
 
 .link {
   color: white;
-  border: 1px solid white;
+  border: 2px solid white;
   text-decoration: none;
   background-color: #e66465;
-  padding: 10px 20px;
+  padding: 20px 40px;
   border-radius: 50px;
+  font-size: 20px;
+  transition: 0.2s background-color;
+}
+
+.link:hover {
+  background-color: #d66e6e;
 }
