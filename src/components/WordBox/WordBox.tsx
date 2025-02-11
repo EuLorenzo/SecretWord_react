@@ -1,11 +1,11 @@
 import styles from "./WordBox.module.css";
 
 interface WordBoxProps {
-  word: string;
+  letter: string;
 }
 
-const WordBox = ({ word }: WordBoxProps) => {
-  return <div className={styles.box}>{word}</div>;
+const WordBox = ({ letter }: WordBoxProps) => {
+  return <div className={styles.box}>{letter}</div>;
 };
 
 export default WordBox;
