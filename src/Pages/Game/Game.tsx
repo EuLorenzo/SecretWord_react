@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Words from "../../Words";
 import WordBox from "../../components/WordBox/WordBox";
 import styles from "./Game.module.css";
@@ -8,6 +8,7 @@ const Game = () => {
   const [splitedWord, setSplitedWord] = useState<string[]>([]);
   const [guessingWord, setGuessingWord] = useState<string[]>([]);
   const [letter, setLetter] = useState("");
+  const letterInputRef = useRef<HTMLInputElement>(null);
   const [wrongLetter, setWrongLetter] = useState<string[]>([]);
   const [pontuacao, setPontuacao] = useState(0);
 
@@ -33,6 +34,10 @@ const Game = () => {
         newWrongLetter.push(letter);
         return newWrongLetter;
       });
+      if (letterInputRef.current) {
+        letterInputRef.current.focus();
+      }
+
       setLetter("");
     } else {
       setGuessingWord((prev) => {
@@ -54,13 +59,12 @@ const Game = () => {
         return newGuessingWord;
       });
 
+      if (letterInputRef.current) {
+        letterInputRef.current.focus();
+      }
       setLetter("");
     }
   };
-
-  useEffect(() => {
-    setWords();
-  }, []);
 
   const setWords = () => {
     const guessWord: string[] = [];
@@ -72,12 +76,13 @@ const Game = () => {
       guessWord.push("");
     });
 
-    console.log("Splited word: " + splitedWord);
-    console.log("Guessing word: " + guessWord);
-
     setSplitedWord(splitedWord);
     setGuessingWord(guessWord);
   };
+
+  useEffect(() => {
+    setWords();
+  }, []);
 
   return (
     <div className={styles.main}>
@@ -99,13 +104,19 @@ const Game = () => {
             maxLength={1}
             value={letter}
             onChange={(e) => setLetter(e.target.value.toUpperCase())}
+            ref={letterInputRef}
+            required
           />
         </label>
 
         <button className={styles.button} type="submit" children={"Jogar!"} />
       </form>
 
-      <p>{wrongLetter}</p>
+      <p>
+        {wrongLetter.map((l) => (
+          <span>{l}, </span>
+        ))}
+      </p>
     </div>
   );
 };
